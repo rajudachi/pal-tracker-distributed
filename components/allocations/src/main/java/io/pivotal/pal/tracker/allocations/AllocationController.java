@@ -1,5 +1,7 @@
 package io.pivotal.pal.tracker.allocations;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.pivotal.pal.tracker.allocations.data.AllocationDataGateway;
 import io.pivotal.pal.tracker.allocations.data.AllocationFields;
 import io.pivotal.pal.tracker.allocations.data.AllocationRecord;
@@ -39,6 +41,7 @@ public class AllocationController {
     }
 
     @GetMapping
+    @JsonDeserialize
     public List<AllocationInfo> list(@RequestParam long projectId) {
         return gateway.findAllByProjectId(projectId)
             .stream()
