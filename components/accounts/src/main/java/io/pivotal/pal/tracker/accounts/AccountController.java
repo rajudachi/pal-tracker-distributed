@@ -2,6 +2,7 @@ package io.pivotal.pal.tracker.accounts;
 
 import io.pivotal.pal.tracker.accounts.data.AccountDataGateway;
 import io.pivotal.pal.tracker.accounts.data.AccountRecord;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,9 @@ public class AccountController {
         this.gateway = gateway;
     }
 
-    @GetMapping("/accounts")
+   // @GetMapping("/accounts")
+    @GetMapping(value="/accounts", produces= MediaType.APPLICATION_JSON_VALUE)
+
     public List<AccountInfo> list(@RequestParam long ownerId) {
         return gateway.findAllByOwnerId(ownerId)
             .stream()

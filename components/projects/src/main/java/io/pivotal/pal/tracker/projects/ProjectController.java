@@ -4,6 +4,7 @@ import io.pivotal.pal.tracker.projects.data.ProjectDataGateway;
 import io.pivotal.pal.tracker.projects.data.ProjectFields;
 import io.pivotal.pal.tracker.projects.data.ProjectRecord;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,7 @@ public class ProjectController {
         return new ResponseEntity<>(present(record), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public List<ProjectInfo> list(@RequestParam long accountId) {
         return gateway.findAllByAccountId(accountId)
             .stream()

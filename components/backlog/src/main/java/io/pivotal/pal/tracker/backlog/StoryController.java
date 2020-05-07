@@ -4,6 +4,7 @@ import io.pivotal.pal.tracker.backlog.data.StoryDataGateway;
 import io.pivotal.pal.tracker.backlog.data.StoryFields;
 import io.pivotal.pal.tracker.backlog.data.StoryRecord;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class StoryController {
         return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
-    @GetMapping
+    @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public List<StoryInfo> list(@RequestParam long projectId) {
         return gateway.findAllByProjectId(projectId).stream()
             .map(this::present)
