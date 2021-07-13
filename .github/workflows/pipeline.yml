@@ -60,7 +60,7 @@ jobs:
       - name: Deploy to cf
         run: |
           cf api https://api.run.pivotal.io
-          cf auth nageswara.dachiraju@cognizant.com Anika123%
+          cf auth ${{email}} ${{password}}
           cf target -o uki-engineering -s NageswaraRajuDachiraju
           cf push -f ./manifest-allocations.yml -p ./pal-tracker-distributed/allocations-server.jar
         env:
